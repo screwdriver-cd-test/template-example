@@ -12,7 +12,7 @@ jobs:
         export SD_TEMPLATE_PATH=./templates/nodejs.yaml
         template-validate
   publish_default_template:
-    requires: [main]
+    requires: [validate_templates]
     # Don't need to set SD_TEMPLATE_PATH since it is at the default (sd-template.yaml)
     # environment:
     #   SD_TEMPLATE_PATH: ./sd-template.yaml
@@ -24,7 +24,7 @@ jobs:
     - tag: |
         template-tag --name nodejs/test --version `cat VERSION` --tag latest
   publish_nodejs_template:
-    requires: [main]
+    requires: [validate_templates]
     environment:
       SD_TEMPLATE_PATH: ./templates/nodejs.yaml
     steps:
