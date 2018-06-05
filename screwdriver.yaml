@@ -1,0 +1,36 @@
+---
+shared:
+  image: node:8
+jobs:
+  validate_templates:
+    requires: [~pr, ~commit]
+    steps:
+    - install_prerequisites: npm install -g screwdriver-template-main
+    - validate_default_template: |
+        template-validate
+    - validate_nodejs_template: |
+        export SD_TEMPLATE_PATH=./templates/nodejs.yaml
+        template-validate
+  publish_default_template:
+    requires: [main]
+    # Don't need to set SD_TEMPLATE_PATH since it is at the default (sd-template.yaml)
+    # environment:
+    #   SD_TEMPLATE_PATH: ./sd-template.yaml
+    steps:
+    - install_prerequisites: npm install -g screwdriver-template-main
+    - publish:  template-publish | tee publish.output
+    - determine_version: cat publish.output | awk -F[@\ ] '{print $3}' | tee VERSION
+    - save_version: /opt/sd/meta set template.default.version `cat VERSION`
+    - tag: |
+        template-tag --name nodejs/test --version `cat VERSION` --tag latest
+  publish_nodejs_template:
+    requires: [main]
+    environment:
+      SD_TEMPLATE_PATH: ./templates/nodejs.yaml
+    steps:
+    - install_prerequisites: npm install -g screwdriver-template-main
+    - publish:  template-publish | tee publish.output
+    - determine_version: cat publish.output | awk -F[@\ ] '{print $3}' | tee VERSION
+    - save_version: /opt/sd/meta set template.nodejs.version `cat VERSION`
+    - tag: |
+        template-tag --name golang/init --version `cat VERSION` --tag stable
