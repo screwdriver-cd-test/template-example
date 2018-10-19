@@ -41,4 +41,5 @@ jobs:
     environment:
       SD_TEMPLATE_PATH: ./templates/nodejs.yaml
     steps:
+    - install_prerequisites: npm install -g screwdriver-template-main
     - autotag: template-tag --name nodejs/test --tag stable
