@@ -4,7 +4,7 @@ version: "1"
 description: An example template for testing golang files
 maintainer: foo@bar.com
 config:
-  image: node:8
+  image: golang
   steps:
     - glide: |
         export PATH=$PATH:$GOPATH/bin
