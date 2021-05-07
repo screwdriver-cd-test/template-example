@@ -1,6 +1,6 @@
 namespace: golang
 name: init
-version: "1"
+version: "2"
 description: An example template for testing golang files
 maintainer: foo@bar.com
 config:
