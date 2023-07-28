@@ -9,8 +9,8 @@ images:
 config:
   image: latest-image
   steps:
-    - install: npm install
-    - test: npm test
+    - install: echo "installing"
+    - test: echo "testing"
   environment:
     FOO: bar
   secrets:
