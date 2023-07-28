@@ -1,6 +1,6 @@
 namespace: nodejs
 name: test
-version: "2"
+version: "2.0.1"
 description: An example template for testing npm files
 maintainer: foo@bar.com
 images:
@@ -9,8 +9,8 @@ images:
 config:
   image: latest-image
   steps:
-    - install: npm install
-    - test: npm test
+    - install: echo "installing"
+    - test: echo "testing"
   environment:
     FOO: bar
   secrets:
