@@ -1,6 +1,6 @@
 namespace: nodejs
 name: test
-version: "2"
+version: "2.0.1"
 description: An example template for testing npm files
 maintainer: foo@bar.com
 images:
