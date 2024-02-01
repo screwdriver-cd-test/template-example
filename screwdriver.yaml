@@ -1,6 +1,6 @@
 ---
 shared:
-  image: node:8
+  image: node:lts
 jobs:
   # 1. Validate templates
   validate_templates:
