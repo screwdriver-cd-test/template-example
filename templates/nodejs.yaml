@@ -4,8 +4,8 @@ version: "2"
 description: An example template for testing npm files
 maintainer: foo@bar.com
 images:
-  stable-image: node:6
-  latest-image: node:8
+  stable-image: node:18
+  latest-image: node:lts
 config:
   image: latest-image
   steps:
